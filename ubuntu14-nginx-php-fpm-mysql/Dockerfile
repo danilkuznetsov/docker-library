@@ -28,10 +28,12 @@ RUN find /etc/php5/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
-ADD ./supervisord.conf /etc/supervisord.conf
+ADD templates/supervisord.conf /etc/supervisord.conf
 
 # Startup Script
-ADD ./start.sh /start.sh
-RUN chmod 755 /start.sh
+ADD templates/run.sh /RUN/run.sh
+RUN chmod u+x  /RUN/run.sh
 
-CMD ["/bin/bash", "/start.sh"]
+VOLUME ["/RUN"]
+
+CMD ["/RUN/run.sh"]
