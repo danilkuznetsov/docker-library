@@ -49,10 +49,10 @@ RUN rm -rf /var/cache/apk/* && \
 	apk del tzdata
 
 ADD templates/php-fpm.conf /etc/php7/
-ADD templates/run.sh /
-RUN chmod +x /run.sh
+ADD templates/run.sh /DATA/run.sh
+RUN chmod +x /DATA/run.sh
 
 EXPOSE 9000
 VOLUME ["/DATA"]
 
-CMD ["/run.sh"]
+CMD ["/DATA/run.sh"]

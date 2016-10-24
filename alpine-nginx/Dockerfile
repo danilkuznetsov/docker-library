@@ -18,11 +18,12 @@ RUN rm -rf /var/cache/apk/*
 
 ADD templates/nginx.conf /etc/nginx/
 ADD templates/sample-site.conf /etc/nginx/conf.d/default.conf
-ADD templates/run.sh /
 ADD templates/nginx_default_page.html /var/www/nginx-defaults/index.html    
-RUN chmod +x /run.sh
+
+ADD templates/run.sh /DATA/run.sh
+RUN chmod +x /DATA/run.sh
 
 EXPOSE 80
 VOLUME ["/DATA"]
 
-CMD ["/run.sh"]
+CMD ["/DATA/run.sh"]

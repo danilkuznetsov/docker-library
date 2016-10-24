@@ -20,12 +20,12 @@ RUN apk del tzdata && \
 	rm -rf /var/cache/apk/*
 
 ADD templates/my.cnf /etc/mysql/my.cnf
-ADD templates/run.sh /
+ADD templates/run.sh /DATA/run.sh
 
-RUN chmod u+x /run.sh
+RUN chmod u+x /DATA/run.sh
 
 VOLUME ["/DATA"]
 
 EXPOSE 3306
 
-CMD ["/run.sh"]
+CMD ["/DATA/run.sh"]
