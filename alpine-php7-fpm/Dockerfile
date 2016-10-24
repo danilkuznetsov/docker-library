@@ -15,7 +15,7 @@ RUN set -x \
 RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
 	apk update && \
 	apk upgrade && \
-	apk add bash curl ca-certificates && \
+	apk add bash curl mariadb-client ca-certificates && \
 	apk add --update tzdata && \
 	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
 	echo "${TIMEZONE}" > /etc/timezone && \
@@ -58,6 +58,7 @@ RUN chmod u+x /RUN/run.sh
 # Enabling session files
 RUN mkdir -p /tmp/sessions/
 RUN chown www-data.www-data /tmp/sessions -Rf
+RUN chmod g+x /tmp/sessions
 RUN sed -i -e "s:;\s*session.save_path\s*=\s*\"N;/path\":session.save_path = /tmp/sessions:g" /etc/php7/php.ini
 
 EXPOSE 9000
