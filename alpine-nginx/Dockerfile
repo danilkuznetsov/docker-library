@@ -20,10 +20,11 @@ ADD templates/nginx.conf /etc/nginx/
 ADD templates/sample-site.conf /etc/nginx/conf.d/default.conf
 ADD templates/nginx_default_page.html /var/www/nginx-defaults/index.html    
 
-ADD templates/run.sh /DATA/run.sh
-RUN chmod +x /DATA/run.sh
+ADD templates/run.sh /RUN/run.sh
+RUN chmod u+x /RUN/run.sh
 
 EXPOSE 80
 VOLUME ["/DATA"]
+VOLUME ["/RUN"]
 
-CMD ["/DATA/run.sh"]
+CMD ["/RUN/run.sh"]
