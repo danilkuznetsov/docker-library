@@ -40,6 +40,9 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 		php7-curl \
 		php7-ctype \
 		php7-mbstring \
+		php7-zip \
+		php7-imap \
+		php7-ssh2 \
 		php7-fpm
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
@@ -51,6 +54,11 @@ RUN rm -rf /var/cache/apk/* && \
 ADD templates/php-fpm.conf /etc/php7/
 ADD templates/run.sh /RUN/run.sh
 RUN chmod u+x /RUN/run.sh
+
+# Enabling session files
+RUN mkdir -p /tmp/sessions/
+RUN chown www-data.www-data /tmp/sessions -Rf
+RUN sed -i -e "s:;\s*session.save_path\s*=\s*\"N;/path\":session.save_path = /tmp/sessions:g" /etc/php7/php.ini
 
 EXPOSE 9000
 VOLUME ["/DATA"]
