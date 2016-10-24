@@ -21,9 +21,9 @@ fi
 
 # Enabling session files
 if [ ! -d $VOLUME_RUN/tmp/sessions/ ] ; then
-	mkdir -p $VOLUME_RUN/tmp/sessions/
-	chown -Rf www-data:www-data /tmp/sessions 
-	chmod g+x $VOLUME_RUN/tmp/sessions/
+	mkdir -p /DATA/phpfpm7/tmp/sessions
+	chown -Rf www-data:www-data /DATA/phpfpm7/tmp/sessions 
+	chmod g+x /DATA/phpfpm7/tmp/sessions
 	sed -i -e "s:;\s*session.save_path\s*=\s*\"N;/path\":session.save_path = /DATA/phpfpm7/tmp/sessions:g" /etc/php7/php.ini
 fi
 
