@@ -44,6 +44,7 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 		php7-imap \
 		php7-ssh2 \
 		php7-posix \
+		php7-session \
 		php7-fpm
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
