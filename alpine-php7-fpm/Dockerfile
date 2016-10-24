@@ -56,12 +56,6 @@ ADD templates/php-fpm.conf /etc/php7/
 ADD templates/run.sh /RUN/run.sh
 RUN chmod u+x /RUN/run.sh
 
-# Enabling session files
-RUN mkdir -p /tmp/sessions/
-RUN chown www-data.www-data /tmp/sessions -Rf
-RUN chmod g+x /tmp/sessions
-RUN sed -i -e "s:;\s*session.save_path\s*=\s*\"N;/path\":session.save_path = /tmp/sessions:g" /etc/php7/php.ini
-
 EXPOSE 9000
 VOLUME ["/DATA"]
 VOLUME ["/RUN"]
