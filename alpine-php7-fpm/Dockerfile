@@ -39,6 +39,7 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 		php7-iconv \
 		php7-curl \
 		php7-ctype \
+		php7-mbstring \
 		php7-fpm
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
